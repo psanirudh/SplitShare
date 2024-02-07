@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "601583680273",
+    "firebase_url": "https://splitshare-4a69d-default-rtdb.firebaseio.com",
+    "project_id": "splitshare-4a69d",
+    "storage_bucket": "splitshare-4a69d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:601583680273:android:c10ac367074edf29ee6ab0",
+        "android_client_info": {
+          "package_name": "com.pairprogrammers.splitshare"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDT2qTmIN_TJ5FW0z004JrrXDgon5Xp-JQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
