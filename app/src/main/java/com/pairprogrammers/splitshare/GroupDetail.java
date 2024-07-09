@@ -50,7 +50,7 @@ public class GroupDetail extends AppCompatActivity {
         //tv.setText(groupName);
 
 
-        groupDetailReference = FirebaseDatabase.getInstance().getReference("transactions").child(groupName);
+        groupDetailReference = FirebaseDatabase.getInstance().getReference("transactions").child("groupName");
 
         groupDetailReference.addChildEventListener(new ChildEventListener() {
             @Override

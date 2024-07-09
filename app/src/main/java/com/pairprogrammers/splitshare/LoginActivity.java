@@ -101,7 +101,7 @@ public class LoginActivity extends AppCompatActivity {
         newGroup.name = sampleTxt;
         firebaseGroupsEndPoint.child(sampleTxt).setValue(newGroup);
         Toast.makeText(this,sampleTxt,Toast.LENGTH_LONG).show();*/
-
+      return true;
     }
 
     public boolean doesUserExist(String userName){
