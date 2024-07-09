@@ -74,7 +74,7 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View view) {
                 String enteredUserName = editText_username.getText().toString();
 
-                if(!doesUserExist(enteredUserName)){
+                if(!addUser(enteredUserName)){
                     Toast.makeText(getApplicationContext(),"This username is taken,try some other name",Toast.LENGTH_LONG).show();
                     return;
                 }

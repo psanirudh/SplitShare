@@ -15,7 +15,8 @@
         android:layout_height="wrap_content"
         android:minHeight="48dp"
         android:textColor="@color/white"
-        android:text="Enter your name" />
+        android:textColorHint="#D50000"
+        android:hint="Enter your name" />
 
 
     <Button
