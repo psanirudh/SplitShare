@@ -7,14 +7,11 @@ import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.database.DataSetObserver;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.EditText;
-import android.widget.ListAdapter;
-import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.database.ChildEventListener;
@@ -23,40 +20,60 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.pairprogrammers.splitshare.Adapters.RecyclerViewAdapter;
+import com.pairprogrammers.splitshare.Models.Constants;
+import com.pairprogrammers.splitshare.Models.Group;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Iterator;
+import java.util.List;
+import java.util.ListIterator;
 
 public class MainActivity extends AppCompatActivity {
 
+    public String userName;
     EditText sampleET;
-    ArrayList<String> items;
+    ArrayList<String> groupsList,usersList;
     RecyclerView groupList;
      RecyclerViewAdapter rvAdapter;
+    SharedPreferences sharedPreferences;
+    private static final String SHARED_PREF_NAME = "mypref";
+    private static final String KEY_NAME = "name";
 
-    DatabaseReference firebaseEndPoint;
+    DatabaseReference firebaseGroupsEndPoint,firebaseUsersEndpoint;
+
+    TextView textView_name;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        items = new ArrayList<>();
+        groupsList = new ArrayList<>();
         sampleET = findViewById(R.id.sampleInput);
         groupList = findViewById(R.id.GroupList);
+        textView_name=findViewById(R.id.text_name);
+
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false);
         groupList.setLayoutManager(layoutManager);
         groupList.setItemAnimator(new DefaultItemAnimator());
 
-        rvAdapter = new RecyclerViewAdapter(this,items);
+        rvAdapter = new RecyclerViewAdapter(this, groupsList);
         groupList.setAdapter(rvAdapter);
-        firebaseEndPoint = FirebaseDatabase.getInstance().getReference("groups");
+        firebaseGroupsEndPoint = FirebaseDatabase.getInstance().getReference("groups");
+        firebaseUsersEndpoint = FirebaseDatabase.getInstance().getReference("users");
 
-        firebaseEndPoint.addChildEventListener(new ChildEventListener() {
+        firebaseGroupsEndPoint.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-                String datum = snapshot.getValue(String.class);
-                items.add(datum);
-                rvAdapter.notifyDataSetChanged();
+
+//                Group group = snapshot.getValue(Group.class);
+//                if(group.members.contains(userName)){
+                    groupsList.add(snapshot.getKey());//group.name);
+                    rvAdapter.notifyDataSetChanged();
+//                }
+
+
 
             }
 
@@ -84,9 +101,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void UploadToCloud(View view) {
-
         String sampleTxt = sampleET.getText().toString();
-        firebaseEndPoint.child(sampleTxt).setValue(sampleTxt);
+        Group newGroup = new Group();
+        newGroup.members = new ArrayList<String>(){};
+        newGroup.members.add(Constants.userName);
+        newGroup.name = sampleTxt;
+        firebaseGroupsEndPoint.child(sampleTxt).setValue(newGroup);
         Toast.makeText(this,sampleTxt,Toast.LENGTH_LONG).show();
     }
 }
