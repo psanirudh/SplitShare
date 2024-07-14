@@ -7,5 +7,4 @@ public class Group {
 
     public String name;
     public ArrayList<String> members;
-    public int dummy;
 }
