@@ -1,5 +1,6 @@
 package com.pairprogrammers.splitshare;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -12,8 +13,12 @@ import android.widget.EditText;
 import android.widget.SearchView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.pairprogrammers.splitshare.Models.Constants;
 import com.pairprogrammers.splitshare.Models.Group;
 
@@ -28,12 +33,14 @@ public class LoginActivity extends AppCompatActivity {
     SharedPreferences sharedPreferences;
     private static final String SHARED_PREF_NAME = "mypref";
     private static final String KEY_NAME = "name";
-
+    DatabaseReference firebaseUsersEndpoint;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        firebaseUsersEndpoint = FirebaseDatabase.getInstance().getReference("users");
 
         editText_username=findViewById(R.id.username);
         buttonlogin=findViewById(R.id.login);
@@ -50,65 +57,59 @@ public class LoginActivity extends AppCompatActivity {
         buttonlogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 String enteredUserName = editText_username.getText().toString();
+                DatabaseReference particularUsersEndpoint = firebaseUsersEndpoint.child(enteredUserName);
+                particularUsersEndpoint.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        if (snapshot.exists()) {
+                            SharedPreferences.Editor editor = sharedPreferences.edit();
+                            editor.putString(KEY_NAME, enteredUserName);
+                            editor.apply();
+                            Constants.userName = enteredUserName;
+                            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                            startActivity(intent);
+                        } else {
+                            Toast.makeText(getApplicationContext(), "No such user exist", Toast.LENGTH_LONG).show();
+                        }
+                    }
 
-                if(!doesUserExist(enteredUserName)){
-                    Toast.makeText(getApplicationContext(),"No such user exist",Toast.LENGTH_LONG).show();
-                    return;
-                }
-                SharedPreferences.Editor editor = sharedPreferences.edit();
-                editor.putString(KEY_NAME,enteredUserName);
-                editor.apply();
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
 
-                Constants.userName = enteredUserName;
-
-                Intent intent = new Intent(LoginActivity.this,MainActivity.class);
-                startActivity(intent);
-
-            }
-        });
+                    }
+                });
+            }});
 
         buttonsignup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 String enteredUserName = editText_username.getText().toString();
+                DatabaseReference particularUserEndPoint =  firebaseUsersEndpoint.child(enteredUserName);
+                particularUserEndPoint.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        if (snapshot.exists()) {
+                            Toast.makeText(getApplicationContext(), "Sorry ;) username already taken", Toast.LENGTH_LONG).show();
+                        }
+                        else{
+                            particularUserEndPoint.setValue(enteredUserName);
+                            SharedPreferences.Editor editor = sharedPreferences.edit();
+                            editor.putString(KEY_NAME, enteredUserName);
+                            editor.apply();
+                            Constants.userName = enteredUserName;
+                            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                            startActivity(intent);
+                        }
+                    }
 
-                if(!addUser(enteredUserName)){
-                    Toast.makeText(getApplicationContext(),"This username is taken,try some other name",Toast.LENGTH_LONG).show();
-                    return;
-                }
-                SharedPreferences.Editor editor = sharedPreferences.edit();
-                editor.putString(KEY_NAME,enteredUserName);
-                editor.apply();
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
 
-                Constants.userName = enteredUserName;
-
-                Intent intent = new Intent(LoginActivity.this,MainActivity.class);
-                startActivity(intent);
-
-
+                    }
+                });
             }
         });
 
-    }
-
-    public  boolean addUser(String userName){
-      /*  String sampleTxt = sampleET.getText().toString();
-        Group newGroup = new Group();
-        newGroup.members = new ArrayList<String>(){};
-        newGroup.members.add(Constants.userName);
-        newGroup.name = sampleTxt;
-        firebaseGroupsEndPoint.child(sampleTxt).setValue(newGroup);
-        Toast.makeText(this,sampleTxt,Toast.LENGTH_LONG).show();*/
-      return true;
-    }
-
-    public boolean doesUserExist(String userName){
-        DatabaseReference firebaseUsersEndpoint = FirebaseDatabase.getInstance().getReference("users").child(userName);
-
-        //firebaseUsersEndpoint.
-
-        return true;
     }
 }
