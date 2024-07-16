@@ -9,4 +9,11 @@
     <string name="invalid_username">Not a valid username</string>
     <string name="invalid_password">Password must be >5 characters</string>
     <string name="login_failed">"Login failed"</string>
+    <string name="transcationDescriptionHint">Description</string>
+    <string name="transcationAmountHint">0.0</string>
+    <string name="transcationAmountPaidByText">Paid By :</string>
+    <string name="transcationDoneByDateText">Done By :</string>
+    <string name="transcationDateHint">00/00/0000</string>
+    <string name="transcationCancelText">Cancel</string>
+    <string name="transcationAddText">Split Shares</string>
 </resources>

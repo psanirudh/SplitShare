@@ -3,45 +3,144 @@
     android:orientation="vertical"
     xmlns:android="http://schemas.android.com/apk/res/android">
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Add transaction page" />
-
-   <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:hint="enter a description" />
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:hint="enter the amount"
-        android:inputType="number"
-        />
-
-
-
-    <RadioGroup
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <RadioButton
-            android:layout_width="wrap_content"
-            android:text="Split Equally"
-            android:layout_height="wrap_content"/>
-        <RadioButton
+        android:layout_height="23dp"
+        android:textSize="22dp"
+        android:textStyle="bold"
+        android:layout_marginTop="15dp"
+        android:fontFamily="sans-serif-smallcaps"
+        android:text="@string/app_name"
+        android:textAlignment="center"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="20dp">
+
+        <ImageView
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="120dp"
+            android:orientation="vertical"
+            android:gravity="center_vertical"
+            >
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="16dp"
+                android:hint="@string/transcationDescriptionHint"
+                android:id="@+id/description"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                >
+                <EditText
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="8"
+                    android:textSize="16dp"
+                    android:hint="@string/transcationAmountHint"
+                    android:id="@+id/amount"
+                    android:inputType="number"
+                    />
+                <ImageButton
+                    android:layout_width="20dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:onClick="currencyChange"/>
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginLeft="25dp"
+        android:layout_marginRight="25dp">
+        
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:text="@string/transcationAmountPaidByText"
+
+                />
+
+            <Spinner
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:id="@+id/amountPaidBy"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:text="@string/transcationDoneByDateText"
+                />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textSize="16dp"
+                android:hint="@string/transcationDateHint"
+                android:id="@+id/date"
+                android:onClick="changeDate"
+                android:inputType="number"
+                />
+        </LinearLayout>
+    </LinearLayout>
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="bottom"
+    android:orientation="horizontal">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="bottom">
+        <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="split unequally"/>
-        <RadioButton
-
+            android:text="@string/transcationCancelText"
+            android:backgroundTint="#A49B9B"
+            android:textColor="@color/black"
+            android:layout_alignParentLeft="true"
+            android:onClick="cancelBtn"
+            />
+        <Button
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-    </RadioGroup>
+            android:layout_height="wrap_content"
+            android:backgroundTint="#FF6D00"
+            android:text="@string/transcationAddText"
+            android:layout_alignParentRight="true"
+            android:onClick="addBtn"
+            />
+    </RelativeLayout>
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Add transaction"
-        />
+</LinearLayout>
+
 </LinearLayout>
 
