@@ -64,6 +64,7 @@ public class AddTransaction extends AppCompatActivity implements AdapterView.OnI
                 date.setText(day+"/"+(month+1)+"/"+year);
             }
         },year,month,day);
+        datePickerDialog.show();
     }
 
     @Override
