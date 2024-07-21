@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -80,5 +81,10 @@ public class GroupDetail extends AppCompatActivity {
             }
         });
 
+    }
+
+    public void tpage(View view) {
+        Intent i = new Intent(this,AddTransaction.class);
+        startActivity(i);
     }
 }

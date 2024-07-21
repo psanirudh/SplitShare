@@ -31,7 +31,6 @@ import java.util.ListIterator;
 
 public class MainActivity extends AppCompatActivity {
 
-    public String userName;
     EditText sampleET;
     ArrayList<String> groupsList,usersList;
     RecyclerView groupList;
@@ -66,15 +65,11 @@ public class MainActivity extends AppCompatActivity {
         firebaseGroupsEndPoint.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-
-//                Group group = snapshot.getValue(Group.class);
-//                if(group.members.contains(userName)){
-                    groupsList.add(snapshot.getKey());//group.name);
+                Group group = snapshot.getValue(Group.class);
+                if(group.members.contains(Constants.userName)){
+                    groupsList.add(group.name);
                     rvAdapter.notifyDataSetChanged();
-//                }
-
-
-
+                }
             }
 
             @Override
