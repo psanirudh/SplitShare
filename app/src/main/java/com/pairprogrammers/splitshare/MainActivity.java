@@ -32,7 +32,7 @@ import java.util.ListIterator;
 public class MainActivity extends AppCompatActivity {
 
     EditText sampleET;
-    ArrayList<String> groupsList,usersList;
+    ArrayList<Group> groupsList;
     RecyclerView groupList;
      RecyclerViewAdapter rvAdapter;
     SharedPreferences sharedPreferences;
@@ -67,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
             public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
                 Group group = snapshot.getValue(Group.class);
                 if(group.members.contains(Constants.userName)){
-                    groupsList.add(group.name);
+                    groupsList.add(group);
                     rvAdapter.notifyDataSetChanged();
                 }
             }

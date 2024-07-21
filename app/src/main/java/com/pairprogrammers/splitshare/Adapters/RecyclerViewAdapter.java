@@ -3,6 +3,7 @@ package com.pairprogrammers.splitshare.Adapters;
 import android.accessibilityservice.GestureDescription;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +14,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.pairprogrammers.splitshare.GroupDetail;
+import com.pairprogrammers.splitshare.Models.Group;
 import com.pairprogrammers.splitshare.R;
 
 import java.util.ArrayList;
@@ -20,9 +22,9 @@ import java.util.ArrayList;
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.MyViewHolder> {
 
     Context context;
-    ArrayList<String> items;
+    ArrayList<Group> items;
 
-    public RecyclerViewAdapter(Context context,ArrayList<String> items){
+    public RecyclerViewAdapter(Context context,ArrayList<Group> items){
         this.context = context;
         this.items= items;
     }
@@ -38,15 +40,15 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        holder.tv.setText(items.get(position));
+        holder.tv.setText(items.get(position).name);
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //context.startActivity();
-                String groupName = items.get(holder.getAdapterPosition());
-                Toast.makeText(context,"clicked "+groupName,Toast.LENGTH_LONG).show();
+                Group group = items.get(holder.getAdapterPosition());
+                //Toast.makeText(context,"clicked "+groupName,Toast.LENGTH_LONG).show();
                 Intent intent = new Intent(context,GroupDetail.class);
-                intent.putExtra("groupName",groupName);
+                intent.putExtra("groupName",group.name);
+                intent.putStringArrayListExtra("groupMembers",group.members);
                 context.startActivity(intent);
             }
         });

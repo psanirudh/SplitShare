@@ -19,44 +19,59 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.pairprogrammers.splitshare.Adapters.RecyclerViewAdapter;
+import com.pairprogrammers.splitshare.Adapters.UsersRecyclerViewAdapter;
 import com.pairprogrammers.splitshare.Models.Group;
+import com.pairprogrammers.splitshare.Models.UserSelection;
 
 import java.util.ArrayList;
 
-public class GroupDetail extends AppCompatActivity {
+public class UserSelectionActivity extends AppCompatActivity {
 
+    UsersRecyclerViewAdapter recyclerViewAdapter;
+    RecyclerView recyclerView;
+    ArrayList<UserSelection> users;
     Group group;
-    TextView tv;
-    ArrayList<String> transactions;
-    RecyclerView transRv;
-    RecyclerViewAdapter rvAdapter;
-
-    DatabaseReference groupDetailReference;
+    TextView textView;
+    DatabaseReference userDetailRef;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_group_detail);
-        tv = findViewById(R.id.title);
-        transRv = findViewById(R.id.TransactionsList);
-        //transRv.setItemAnimator(new DefaultItemAnimator());
-        //transRv.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false));
-        transactions = new ArrayList<String>();
-       // rvAdapter = new RecyclerViewAdapter(this,null);//unused for now
-        //transRv.setAdapter(rvAdapter);
+        setContentView(R.layout.activity_user_selection);
+        textView=findViewById(R.id.AddMemberGrp);
+
+        recyclerView = findViewById(R.id.userSelectionRV);
 
         Intent intent = getIntent();
         group = new Group();
         group.name = intent.getStringExtra("groupName");
         group.members  =  intent.getStringArrayListExtra("groupMembers");
-        tv.setText(group.name);
+        textView.setText(group.name);
 
-        groupDetailReference = FirebaseDatabase.getInstance().getReference("transactions").child("groupName");
 
-        groupDetailReference.addChildEventListener(new ChildEventListener() {
+
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false);
+        recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setItemAnimator(new DefaultItemAnimator());
+
+        users = new ArrayList<UserSelection>();
+
+        recyclerViewAdapter = new UsersRecyclerViewAdapter(this, users);
+        recyclerView.setAdapter(recyclerViewAdapter);
+
+
+        userDetailRef = FirebaseDatabase.getInstance().getReference("users");
+
+         userDetailRef.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-                transactions.add(snapshot.getValue(String.class));
+                String userNameFromCloud = snapshot.getKey();
+                boolean isSelected = false;
+                if(group.members.contains(userNameFromCloud)){
+                    isSelected= true;
+                }
+                users.add(new UserSelection(userNameFromCloud,isSelected));
+                recyclerViewAdapter.notifyDataSetChanged();
                 //rvAdapter.notifyDataSetChanged();
             }
 
@@ -83,15 +98,19 @@ public class GroupDetail extends AppCompatActivity {
 
     }
 
-    public void tpage(View view) {
-        Intent i = new Intent(this,AddTransaction.class);
-        startActivity(i);
-    }
 
-    public void tmembers(View view) {
-        Intent i = new Intent(this,UserSelectionActivity.class);
-        i.putExtra("groupName",group.name);
-        i.putStringArrayListExtra("groupMembers",group.members);
-        startActivity(i);
+    public void addMembers(View v){
+
+        ArrayList<String> updateMembers = new ArrayList<>();
+        for (UserSelection u : users) {
+            if(u.isSelected)
+              updateMembers.add(u.name);
+        }
+
+        FirebaseDatabase.getInstance().getReference("groups")
+                .child(group.name).child("members").setValue(updateMembers);
+        Toast.makeText(this,"member(s) modified",Toast.LENGTH_LONG).show();
+        finish();
+
     }
 }
