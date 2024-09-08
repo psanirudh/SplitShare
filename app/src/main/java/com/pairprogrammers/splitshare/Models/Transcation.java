@@ -6,8 +6,10 @@ import android.os.Build;
 import java.time.Instant;
 import java.time.OffsetDateTime;
 import java.util.Dictionary;
+import java.util.HashMap;
 import java.util.Hashtable;
 import java.util.List;
+import java.util.Map;
 
 
 public class Transcation {
@@ -15,7 +17,7 @@ public class Transcation {
     public int totAmountPaid;
     public String title;
     public String PaidBy;
-    public Dictionary<String, Integer> PaidTo;
+    public Map<String, Integer> PaidTo;
 
     public Transcation(){
             tid = Instant.now().getEpochSecond()+"";
@@ -23,7 +25,7 @@ public class Transcation {
 
 
     public void Calculate(List<String> grpMembers){
-        PaidTo =  new Hashtable<>();
+        PaidTo =  new HashMap<>();
         int perPerson = totAmountPaid / grpMembers.size();
 
         for (String grpMember :grpMembers ) {

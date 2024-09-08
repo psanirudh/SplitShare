@@ -24,12 +24,15 @@ import com.pairprogrammers.splitshare.Models.Group;
 import com.pairprogrammers.splitshare.Models.Transcation;
 
 import java.util.ArrayList;
+import java.util.Dictionary;
+import java.util.HashMap;
+import java.util.Map;
 
 public class GroupDetail extends AppCompatActivity {
 
     Group group;
     TextView tv;
-    ArrayList<String> transactions;
+    ArrayList<Transcation> transactions;
     RecyclerView transRv;
     TransactionRecyclerViewAdapter rvAdapter;
 
@@ -43,7 +46,7 @@ public class GroupDetail extends AppCompatActivity {
         transRv = findViewById(R.id.TransactionsList);
         transRv.setItemAnimator(new DefaultItemAnimator());
         transRv.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false));
-        transactions = new ArrayList<String>();
+        transactions = new ArrayList<Transcation>();
         rvAdapter = new TransactionRecyclerViewAdapter(this,transactions);//unused for now
         transRv.setAdapter(rvAdapter);
 
@@ -58,7 +61,8 @@ public class GroupDetail extends AppCompatActivity {
         groupDetailReference.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-                transactions.add(snapshot.child("title").getValue(String.class));
+                Transcation newTransc = snapshot.getValue(Transcation.class);
+                transactions.add(newTransc);
                 rvAdapter.notifyDataSetChanged();
             }
 
