@@ -29,7 +29,7 @@ public class AddTransaction extends AppCompatActivity implements AdapterView.OnI
     Spinner paidBy;
     DatePickerDialog datePickerDialog;
 
-    String groupName = "guiifrr";
+    String groupName;
     public int payer;
 
     //Todo: Tested with temp data only need to modify this from db
@@ -49,6 +49,7 @@ public class AddTransaction extends AppCompatActivity implements AdapterView.OnI
         date = findViewById(R.id.date);
         paidBy = findViewById(R.id.amountPaidBy);
         paidBy.setOnItemSelectedListener(this);
+        groupName = getIntent().getStringExtra("groupName");
 
         ArrayAdapter adapter = new ArrayAdapter(this , android.R.layout.simple_spinner_item , groupMembers);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
