@@ -19,7 +19,9 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.pairprogrammers.splitshare.Adapters.RecyclerViewAdapter;
+import com.pairprogrammers.splitshare.Adapters.TransactionRecyclerViewAdapter;
 import com.pairprogrammers.splitshare.Models.Group;
+import com.pairprogrammers.splitshare.Models.Transcation;
 
 import java.util.ArrayList;
 
@@ -29,7 +31,7 @@ public class GroupDetail extends AppCompatActivity {
     TextView tv;
     ArrayList<String> transactions;
     RecyclerView transRv;
-    RecyclerViewAdapter rvAdapter;
+    TransactionRecyclerViewAdapter rvAdapter;
 
     DatabaseReference groupDetailReference;
 
@@ -39,11 +41,11 @@ public class GroupDetail extends AppCompatActivity {
         setContentView(R.layout.activity_group_detail);
         tv = findViewById(R.id.title);
         transRv = findViewById(R.id.TransactionsList);
-        //transRv.setItemAnimator(new DefaultItemAnimator());
-        //transRv.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false));
+        transRv.setItemAnimator(new DefaultItemAnimator());
+        transRv.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false));
         transactions = new ArrayList<String>();
-       // rvAdapter = new RecyclerViewAdapter(this,null);//unused for now
-        //transRv.setAdapter(rvAdapter);
+        rvAdapter = new TransactionRecyclerViewAdapter(this,transactions);//unused for now
+        transRv.setAdapter(rvAdapter);
 
         Intent intent = getIntent();
         group = new Group();
@@ -51,13 +53,13 @@ public class GroupDetail extends AppCompatActivity {
         group.members  =  intent.getStringArrayListExtra("groupMembers");
         tv.setText(group.name);
 
-        groupDetailReference = FirebaseDatabase.getInstance().getReference("transactions").child("groupName");
+        groupDetailReference = FirebaseDatabase.getInstance().getReference("groups").child(group.name).child("transactions");
 
         groupDetailReference.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-                transactions.add(snapshot.getValue(String.class));
-                //rvAdapter.notifyDataSetChanged();
+                transactions.add(snapshot.child("title").getValue(String.class));
+                rvAdapter.notifyDataSetChanged();
             }
 
             @Override
