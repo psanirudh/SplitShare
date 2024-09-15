@@ -42,6 +42,7 @@ public class TransactionRecyclerViewAdapter  extends RecyclerView.Adapter<Transa
         holder.tv.setText(items.get(position).title);
          int netAmount = items.get(position).PaidTo.get(Constants.userName);
          if(netAmount==0){
+             holder.subTitle.setTextColor(Color.parseColor("#808080"));
              holder.subTitle.setText("Not involved");
          }
          else if(netAmount>0){
@@ -52,7 +53,6 @@ public class TransactionRecyclerViewAdapter  extends RecyclerView.Adapter<Transa
              holder.subTitle.setTextColor(Color.parseColor("#e50000"));
              holder.subTitle.setText("You owe "+ netAmount);
          }
-
     }
 
     @Override
