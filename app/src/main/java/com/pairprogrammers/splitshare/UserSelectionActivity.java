@@ -59,7 +59,6 @@ public class UserSelectionActivity extends AppCompatActivity {
         recyclerViewAdapter = new UsersRecyclerViewAdapter(this, users);
         recyclerView.setAdapter(recyclerViewAdapter);
 
-
         userDetailRef = FirebaseDatabase.getInstance().getReference("users");
 
          userDetailRef.addChildEventListener(new ChildEventListener() {
