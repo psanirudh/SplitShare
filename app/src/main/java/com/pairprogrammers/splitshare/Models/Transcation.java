@@ -24,13 +24,24 @@ public class Transcation {
     }
 
 
-    public void Calculate(List<String> grpMembers){
+    public void Calculate(Map<String,Integer> grpMembers,int slpitType){
         PaidTo =  new HashMap<>();
-        int perPerson = totAmountPaid / grpMembers.size();
 
-        for (String grpMember :grpMembers ) {
-            PaidTo.put(grpMember,perPerson);
+        if(slpitType==2){//unequally
+            PaidTo = grpMembers;
         }
+        else if(slpitType==1){//equally between some people
+          int totalPeopleInvolved = grpMembers.keySet().size();
+          int perPerson = totAmountPaid /totalPeopleInvolved;
 
+            for (String grpMember :grpMembers.keySet() ) {
+                if(grpMember.equals(PaidBy)){
+                    PaidTo.put(grpMember,(totalPeopleInvolved-1)*perPerson);
+                }
+                else{
+                    PaidTo.put(grpMember,-1*perPerson);
+                }
+            }
+        }
     }
 }
