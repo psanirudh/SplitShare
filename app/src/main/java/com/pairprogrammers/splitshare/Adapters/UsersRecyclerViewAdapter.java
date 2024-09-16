@@ -31,14 +31,12 @@ public class UsersRecyclerViewAdapter extends RecyclerView.Adapter<UsersRecycler
     Context context;
     ArrayList<UserSelection> items;
     int mode;//checkbox=>1,edittext=>2
-    public Map<String, Integer> balance;
 
 
     public UsersRecyclerViewAdapter(Context context,ArrayList<UserSelection> items,int mode){
         this.context = context;
         this.items= items;
         this.mode = mode;
-        balance = new HashMap<>();
     }
 
 
@@ -61,14 +59,7 @@ public class UsersRecyclerViewAdapter extends RecyclerView.Adapter<UsersRecycler
                  holder.isSelected.setOnClickListener(new View.OnClickListener() {
                  @Override
                  public void onClick(View view) {
-                     boolean isSelected = holder.isSelected.isSelected();
-                     items.get(holder.getAdapterPosition()).isSelected = isSelected;
-                     if(isSelected){
-                         balance.put(items.get(holder.getAdapterPosition()).name,1);
-                     }
-                     else{
-                         balance.put(items.get(holder.getAdapterPosition()).name,0);
-                     }
+                     items.get(holder.getAdapterPosition()).isSelected = holder.isSelected.isChecked();
                  }
 
              });}
