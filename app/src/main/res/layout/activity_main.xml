@@ -13,10 +13,9 @@ xmlns:android="http://schemas.android.com/apk/res/android">
          android:paddingHorizontal="5dp"
          android:id="@+id/sampleInput"
          android:textColorHint="#a9a9a8"
-         android:textColor="@color/black"
          android:hint="enter group name"
          android:layout_marginLeft="10dp"
-         />
+          />
 
      <Button
          android:layout_width="wrap_content"
