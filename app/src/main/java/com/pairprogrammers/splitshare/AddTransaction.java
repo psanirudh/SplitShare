@@ -68,7 +68,7 @@ public class AddTransaction extends AppCompatActivity implements AdapterView.OnI
         setContentView(R.layout.activity_add_transaction);
         desc=findViewById(R.id.description);
         amt = findViewById(R.id.amount);
-        date = findViewById(R.id.date);
+        //date = findViewById(R.id.date);
         paidBy = findViewById(R.id.amountPaidBy);
         paidBy.setOnItemSelectedListener(this);
         groupName = getIntent().getStringExtra("groupName");
