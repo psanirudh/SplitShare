@@ -22,9 +22,11 @@ import android.widget.Toast;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.pairprogrammers.splitshare.Adapters.TransactionRecyclerViewAdapter;
 import com.pairprogrammers.splitshare.Adapters.UsersRecyclerViewAdapter;
+import com.pairprogrammers.splitshare.Models.Constants;
 import com.pairprogrammers.splitshare.Models.Transcation;
 import com.pairprogrammers.splitshare.Models.UserSelection;
 
@@ -38,7 +40,7 @@ public class AddTransaction extends AppCompatActivity implements AdapterView.OnI
     EditText desc,amt,date;
     Spinner paidBy;
     DatePickerDialog datePickerDialog;
-
+    Transcation toBeUpdateTrans;
     String groupName;
     public int payer;
     int mode;
@@ -50,38 +52,38 @@ public class AddTransaction extends AppCompatActivity implements AdapterView.OnI
     RecyclerView recyclerView; public  UsersRecyclerViewAdapter userRVAdapter;
 
 
+
     public void ToggleRV(int mode){
         this.mode = mode;
         userRVAdapter = new UsersRecyclerViewAdapter(this,userSelections,mode);
         recyclerView.setAdapter(userRVAdapter);
-        View v = recyclerView.getChildAt(1);
-
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_add_transaction);
+
+
         groupMembers = new ArrayList<String>();
         balanceSheet = new HashMap<>();
         userSelections = new ArrayList<>();
-        setContentView(R.layout.activity_add_transaction);
+
         desc=findViewById(R.id.description);
         amt = findViewById(R.id.amount);
         //date = findViewById(R.id.date);
         paidBy = findViewById(R.id.amountPaidBy);
+
         paidBy.setOnItemSelectedListener(this);
         groupName = getIntent().getStringExtra("groupName");
+
+        groupName = "ffggbh";
+        toBeUpdateTrans= Constants.currentTransaction;//will be there for update mode only
 
         ArrayAdapter adapter = new ArrayAdapter(this , android.R.layout.simple_spinner_item , groupMembers);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         paidBy.setAdapter(adapter);
-        recyclerView = findViewById(R.id.balanceRv);
-        recyclerView.setItemAnimator(new DefaultItemAnimator());
-        recyclerView.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false));
-
-        ToggleRV(1);
-
         FirebaseDatabase.getInstance().getReference("groups").child(groupName).child("members").addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
@@ -116,6 +118,23 @@ public class AddTransaction extends AppCompatActivity implements AdapterView.OnI
         });
 
 
+
+
+        if(toBeUpdateTrans!=null){
+            paidBy.setSelection(groupMembers.indexOf(toBeUpdateTrans.PaidBy));
+            desc.setText(toBeUpdateTrans.title);
+            amt.setText(toBeUpdateTrans.totAmountPaid+"");
+        }
+
+
+        recyclerView = findViewById(R.id.balanceRv);
+        recyclerView.setItemAnimator(new DefaultItemAnimator());
+        recyclerView.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false));
+
+        ToggleRV(1);
+
+
+
     }
 
     public void addBtn(View view) {
@@ -145,11 +164,28 @@ public class AddTransaction extends AppCompatActivity implements AdapterView.OnI
         transcation.title = desc.getText().toString();
         transcation.totAmountPaid = Integer.parseInt(amt.getText().toString());
         transcation.PaidBy = groupMembers.get(payer);
-        transcation.Calculate(balanceSheet,mode);
+        boolean isTransactionSucess = transcation.Calculate(balanceSheet,mode);
+
+        if(!isTransactionSucess){
+            Toast.makeText(this,"Totally doesn't tally,please check again",Toast.LENGTH_LONG).show();
+            return;
+        }
+
         FirebaseDatabase.getInstance().getReference("groups").child(groupName).child("transactions").child(transcation.tid).setValue(transcation);
         Toast.makeText(this,"added ..",Toast.LENGTH_LONG).show();
+        finish();
+    }
 
+
+    public void DeleteTransaction(View v){
+        if(toBeUpdateTrans==null){
+            Toast.makeText(this,"this is a new transc can't delete",Toast.LENGTH_LONG).show();
+           return;
         }
+        FirebaseDatabase.getInstance().getReference("groups").child(groupName).child("transactions")
+                .child(toBeUpdateTrans.tid).removeValue();
+    }
+
 
     public  void splitEq(View v){
         ToggleRV(1);

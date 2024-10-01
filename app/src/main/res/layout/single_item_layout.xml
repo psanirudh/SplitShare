@@ -27,6 +27,6 @@
             android:layout_below="@id/itemTV"
             android:layout_toRightOf="@id/image"
             android:text="No Expense!"
-            android:textColor="#a9a9a8"
+            android:textColor="#CDCD0B"
             />
 </RelativeLayout>

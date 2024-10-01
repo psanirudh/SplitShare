@@ -144,6 +144,7 @@ public class GroupDetail extends AppCompatActivity {
     }
 
     public void tpage(View view) {
+        Constants.currentTransaction = null;
         Intent i = new Intent(this,AddTransaction.class);
         i.putExtra("groupName",group.name);
         startActivity(i);

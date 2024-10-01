@@ -68,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
                 Group group = snapshot.getValue(Group.class);
                 if(group.members.contains(Constants.userName)){
                     groupsList.add(group);
-                    rvAdapter.notifyDataSetChanged();
+                    rvAdapter.notifyDataSetChanged();//notifyItemInserted(groupsList.size()-1);
                 }
             }
 
@@ -97,6 +97,10 @@ public class MainActivity extends AppCompatActivity {
 
     public void UploadToCloud(View view) {
         String sampleTxt = sampleET.getText().toString();
+        if(sampleTxt.isEmpty()){
+            Toast.makeText(this,"Group can't  be empty",Toast.LENGTH_LONG).show();
+            return;
+        }
         Group newGroup = new Group();
         newGroup.members = new ArrayList<String>(){};
         newGroup.members.add(Constants.userName);

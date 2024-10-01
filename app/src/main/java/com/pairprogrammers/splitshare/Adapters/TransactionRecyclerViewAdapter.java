@@ -1,6 +1,8 @@
 package com.pairprogrammers.splitshare.Adapters;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.view.LayoutInflater;
@@ -11,6 +13,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.pairprogrammers.splitshare.AddTransaction;
 import com.pairprogrammers.splitshare.Models.Constants;
 import com.pairprogrammers.splitshare.Models.Transcation;
 import com.pairprogrammers.splitshare.R;
@@ -39,8 +42,19 @@ public class TransactionRecyclerViewAdapter  extends RecyclerView.Adapter<Transa
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHold4er holder, int position) {
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+               Constants.currentTransaction = items.get(holder.getAdapterPosition());
+               context.startActivity(new Intent(context, AddTransaction.class));
+            }
+        });
+
         holder.tv.setText(items.get(position).title);
-         int netAmount = items.get(position).PaidTo.get(Constants.userName);
+         int netAmount = 0;
+         if(items.get(position).PaidTo.containsKey(Constants.userName))
+            netAmount = items.get(position).PaidTo.get(Constants.userName);
          if(netAmount==0){
              holder.subTitle.setTextColor(Color.parseColor("#808080"));
              holder.subTitle.setText("Not involved");

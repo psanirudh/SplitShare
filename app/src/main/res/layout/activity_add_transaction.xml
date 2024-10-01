@@ -132,39 +132,18 @@
                 android:layout_height="match_parent"
                 android:id="@+id/balanceRv"/>
 
-        </LinearLayout>
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/gradient_buttons"
+                android:onClick="addBtn"
+                android:text="@string/transcationAddText" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="bottom"
-            android:orientation="horizontal">
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginHorizontal="10dp"
-                android:layout_marginBottom="10dp"
-                android:gravity="bottom">
-
-                <Button
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
-                    android:backgroundTint="#BDBDBC"
-                    android:onClick="cancelBtn"
-                    android:paddingVertical="12dp"
-                    android:text="@string/transcationCancelText"
-                    android:textColor="@color/black" />
-
-                <Button
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:background="@drawable/gradient_buttons"
-                    android:onClick="addBtn"
-                    android:text="@string/transcationAddText" />
-            </RelativeLayout>
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="DeleteTrans"
+                android:text="delete transaction" />
 
         </LinearLayout>
 
