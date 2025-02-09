@@ -1,5 +1,12 @@
 package com.pairprogrammers.splitshare;
 
+//Todo: Edit and delete implementation
+//Todo: Concurenct take care, and update on transaction commiting itself.
+// Todo: Ux integrate given by aadhi
+//  Todo: Logo add
+
+
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;

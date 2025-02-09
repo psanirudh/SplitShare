@@ -19,15 +19,20 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.pairprogrammers.splitshare.Adapters.RecyclerViewAdapter;
 import com.pairprogrammers.splitshare.Models.Constants;
 import com.pairprogrammers.splitshare.Models.Group;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collection;
+import java.util.Date;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
+import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -41,8 +46,6 @@ public class MainActivity extends AppCompatActivity {
 
     DatabaseReference firebaseGroupsEndPoint,firebaseUsersEndpoint;
 
-    TextView textView_name;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,8 +53,6 @@ public class MainActivity extends AppCompatActivity {
         groupsList = new ArrayList<>();
         sampleET = findViewById(R.id.sampleInput);
         groupList = findViewById(R.id.GroupList);
-        textView_name=findViewById(R.id.text_name);
-
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false);
         groupList.setLayoutManager(layoutManager);
@@ -60,11 +61,13 @@ public class MainActivity extends AppCompatActivity {
         rvAdapter = new RecyclerViewAdapter(this, groupsList);
         groupList.setAdapter(rvAdapter);
         firebaseGroupsEndPoint = FirebaseDatabase.getInstance().getReference("groups");
-        firebaseUsersEndpoint = FirebaseDatabase.getInstance().getReference("users");
 
-        firebaseGroupsEndPoint.addChildEventListener(new ChildEventListener() {
+
+        firebaseGroupsEndPoint.f
+    ..addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                Object pp = snapshot.getValue();
                 Group group = snapshot.getValue(Group.class);
                 if(group.members.contains(Constants.userName)){
                     groupsList.add(group);
@@ -101,11 +104,33 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(this,"Group can't  be empty",Toast.LENGTH_LONG).show();
             return;
         }
+        String groupId = "group"+ Calendar.getInstance().toString()+":"+Constants.userName;
         Group newGroup = new Group();
         newGroup.members = new ArrayList<String>(){};
         newGroup.members.add(Constants.userName);
         newGroup.name = sampleTxt;
-        firebaseGroupsEndPoint.child(sampleTxt).setValue(newGroup);
-        Toast.makeText(this,sampleTxt,Toast.LENGTH_LONG).show();
+        DatabaseReference groupAddition = firebaseGroupsEndPoint.push();
+        groupAddition.setValue(newGroup);
+        Toast.makeText(this,sampleTxt+"@"+groupAddition.getKey(),Toast.LENGTH_LONG).show();
+
+        firebaseUsersEndpoint = FirebaseDatabase.getInstance().getReference("users").child(Constants.userName);
+
+        firebaseUsersEndpoint.child("groups").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot snapshot) {
+                ArrayList<String> list;
+                if (snapshot.exists()) {
+                    list = (ArrayList<String>) snapshot.getValue();
+                } else {
+                    list = new ArrayList<>();
+                }
+                list.add(groupAddition.getKey());
+                firebaseUsersEndpoint.child("groups").setValue(list);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError error) {
+            }
+        });
     }
 }

@@ -21,8 +21,14 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.pairprogrammers.splitshare.Models.Constants;
 import com.pairprogrammers.splitshare.Models.Group;
+import com.pairprogrammers.splitshare.Models.UserSelection;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.List;
+import java.util.ListIterator;
 import java.util.Map;
 import java.util.Set;
 
@@ -50,8 +56,7 @@ public class LoginActivity extends AppCompatActivity {
         String name = sharedPreferences.getString(KEY_NAME,null);
         if (name!=null){
             Constants.userName = name;
-            Intent intent= new Intent(LoginActivity.this,MainActivity.class);
-            startActivity(intent);
+            navigateToMainPage();
         }
 
         buttonlogin.setOnClickListener(new View.OnClickListener() {
@@ -67,8 +72,7 @@ public class LoginActivity extends AppCompatActivity {
                             editor.putString(KEY_NAME, enteredUserName);
                             editor.apply();
                             Constants.userName = enteredUserName;
-                            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                            startActivity(intent);
+                            navigateToMainPage();
                         } else {
                             Toast.makeText(getApplicationContext(), "No such user exist", Toast.LENGTH_LONG).show();
                         }
@@ -93,13 +97,15 @@ public class LoginActivity extends AppCompatActivity {
                             Toast.makeText(getApplicationContext(), "Sorry ;) username already taken", Toast.LENGTH_LONG).show();
                         }
                         else{
-                            particularUserEndPoint.setValue(enteredUserName);
+                            UserSelection user = new UserSelection();
+                            user.name = enteredUserName;
+                            user.groups = new ArrayList<String>();
+                            particularUserEndPoint.setValue(user);
                             SharedPreferences.Editor editor = sharedPreferences.edit();
                             editor.putString(KEY_NAME, enteredUserName);
                             editor.apply();
                             Constants.userName = enteredUserName;
-                            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                            startActivity(intent);
+                            navigateToMainPage();
                         }
                     }
 
@@ -111,5 +117,11 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    public void navigateToMainPage(){
+        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+        startActivity(intent);
+        finish();
     }
 }
