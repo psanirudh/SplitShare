@@ -42,7 +42,7 @@ const Home = ({navigation}) =>{
         <StatusBar />
         <View>
         <TextInput
-        placeholder="Enter text here" style={styles.groupInput}
+        placeholder="Enter name here" style={styles.groupInput}
               onChangeText={ textt => handleInputChange(textt)}
       />
           <Button title='Create Group' 
