@@ -25,21 +25,35 @@ import GroupDetail from './GroupDetail';
 //     return () => unsubscribe();
 //   }, []);
 
-  let arr = [
-    {title: 'John', desc: "adfghjklcvbnm,dfghjkl;dfgjl"},
-    {title: 'Doe', desc: "adfghjklcvbnm,dfghjkl;dfgjl"},
-    {title: 'Smith', desc: "adfghjklcvbnm,dfghjkl;dfgjl"}
-  ]
 
 
 const Home = ({navigation}) =>{
+  const [text,settext]=useState('');
+  const [arr,setArr] = useState( [
+    {title: 'John', desc: "adfghjklcvbnm,dfghjkl;dfgjl"},
+    {title: 'Doe', desc: "adfghjklcvbnm,dfghjkl;dfgjl"},
+    {title: 'Smith', desc: "adfghjklcvbnm,dfghjkl;dfgjl"}
+  ]);
+  const handleInputChange = (text) => {
+    settext(text);
+};
     return (
         <View style={styles.container}>
         <StatusBar />
         <View>
-          <TextInput placeholder='Enter adhi samomu Group Name' style={styles.groupInput}/>
+        <TextInput
+        placeholder="Enter text here" style={styles.groupInput}
+              onChangeText={ textt => handleInputChange(textt)}
+      />
           <Button title='Create Group' 
-            onPress={() =>  {console.log('Create Group'); navigation.navigate('GroupDetail')}}/> 
+            onPress={() =>  {console.log('Create Group'); setArr([...arr,{title:text,desc:"summa"}]); }}
+          />
+
+          {arr.map((groupDetails, index) => (
+            <Text 
+              key={index}>{groupDetails.title}</Text>
+          ))}
+  
         </View>
         {/* <ScrollView>
         {
