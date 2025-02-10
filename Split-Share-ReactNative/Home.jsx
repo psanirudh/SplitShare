@@ -51,9 +51,9 @@ const Home = ({navigation}) =>{
 
           {arr.map((groupDetails, index) => (
             <Text 
-              key={index}>{groupDetails.title}</Text>
+            onPress={()=>navigation.navigate('GroupDetail')} key={index}>{groupDetails.title }</Text>
           ))}
-  
+          
         </View>
         {/* <ScrollView>
         {
