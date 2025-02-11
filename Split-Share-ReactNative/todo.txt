@@ -1,0 +1,5 @@
+add icon to grouplist/transaaction logo-done
+show groupname in groupdetail page
+clr input after submit
+move add group logic to seperate page
+pass data to edit transaaction and design UI

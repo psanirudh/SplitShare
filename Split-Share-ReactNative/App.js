@@ -10,7 +10,8 @@ import { NavigationContainer } from '@react-navigation/native';
 import { ScreenStack } from 'react-native-screens';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import TranactionDetail from './TransactionDetail';
-
+import Group from './Group';
+import EditTranc from './EditTranc'
 
 export default function App() {
 
@@ -22,6 +23,8 @@ export default function App() {
       <Stack.Screen name="Home" component={Home} options={{title: 'Home'}} />
       <Stack.Screen name="GroupDetail" component={GroupDetail} options={{title: 'GroupDetail'}} />
       <Stack.Screen name="Transc" component={TransactionDetail} options={{title: 'View Transaction Detail'}} />
+      <Stack.Screen name="Group" component={Group} options={{title: 'Group'}}/>
+      <Stack.Screen name="EditTranc" component={EditTranc} options={{title: 'Edit'}}/>
     </Stack.Navigator> 
     </NavigationContainer>
   );

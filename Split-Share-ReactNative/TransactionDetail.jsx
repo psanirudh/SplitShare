@@ -14,7 +14,8 @@ const TransactionDetail = ({navigation}) =>{
     return (
      <View>
         <View>
-            <Button title='Edit'/>
+            <Button title='Edit'
+            onPress={()=>navigation.navigate('EditTranc')}/>
             <Button title='Delete'/>
         </View>
         <Text>{sampleTransaction.name}</Text>

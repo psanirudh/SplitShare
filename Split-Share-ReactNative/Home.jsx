@@ -5,6 +5,8 @@ import { database } from "./Firebase";
 import { ref, onValue } from "firebase/database";
 import { useEffect, useState } from 'react';
 import GroupDetail from './GroupDetail';
+import logo from './assets/favicon.png'
+import Group from "./Group";
 
 // const [data, setData] = useState([]);
 
@@ -41,17 +43,25 @@ const Home = ({navigation}) =>{
         <View style={styles.container}>
         <StatusBar />
         <View>
-        <TextInput
+        <TextInput 
         placeholder="Enter name here" style={styles.groupInput}
-              onChangeText={ textt => handleInputChange(textt)}
+        
+        onChangeText={ textt => handleInputChange(textt)}
       />
-          <Button title='Create Group' 
+      <Button 
+              title="Add" 
+              onPress={()=>navigation.navigate("Group")}
+              />
+          <Button  title='Create Group'
             onPress={() =>  {console.log('Create Group'); setArr([...arr,{title:text,desc:"summa"}]); }}
           />
 
           {arr.map((groupDetails, index) => (
+            <div key={index}>
+            <img src={logo} alt="png  "/>
             <Text 
             onPress={()=>navigation.navigate('GroupDetail')} key={index}>{groupDetails.title }</Text>
+            </div>
           ))}
           
         </View>
