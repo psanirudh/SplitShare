@@ -9,6 +9,9 @@ const Group = ({navigation}) =>{
         title='AddMembers'
         onPress={()=>navigation.navigate()
         }/>
+        <Button
+        title='Create group'
+        onPress={()=>navigation.navigate(Home)}/>
         </>
     );
 };

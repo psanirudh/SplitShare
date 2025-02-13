@@ -1,11 +1,12 @@
-import { Button, TextInput } from "react-native-web"
+import { Button, TextInput } from "react-native"
 
 const EditTranc = ({navigation})=>{
     return(
     <>
     <TextInput placeholder="Edit Name"/>
-    <input type="int"  placeholder="Edit amount"/>
-    <Button title="Save"/>
+    <TextInput inputMode="numeric" keyboardType="numeric"  placeholder="Edit amount"/>
+    <Button title="Save"
+    onPress={()=>navigation.navigate('Transc')}/>
     </>
     );
 }

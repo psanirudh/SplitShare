@@ -5,7 +5,7 @@ import { database } from "./Firebase";
 import { ref, onValue } from "firebase/database";
 import { useEffect, useState } from 'react';
 import GroupDetail from './GroupDetail';
-import logo from './assets/favicon.png'
+import favicon from './assets/favicon.png'
 import Group from "./Group";
 
 // const [data, setData] = useState([]);
@@ -29,7 +29,7 @@ import Group from "./Group";
 
 
 
-const Home = ({navigation}) =>{
+const Home = ({navigation,props}) =>{
   const [text,settext]=useState('');
   const [arr,setArr] = useState( [
     {title: 'John', desc: "adfghjklcvbnm,dfghjkl;dfgjl"},
@@ -45,23 +45,22 @@ const Home = ({navigation}) =>{
         <View>
         <TextInput 
         placeholder="Enter name here" style={styles.groupInput}
-        
         onChangeText={ textt => handleInputChange(textt)}
       />
-      <Button 
+      <Button style={styles.addbtn}
               title="Add" 
               onPress={()=>navigation.navigate("Group")}
               />
-          <Button  title='Create Group'
+          <Button style={styles.crtgrpbtn} title='Create Group'
             onPress={() =>  {console.log('Create Group'); setArr([...arr,{title:text,desc:"summa"}]); }}
           />
 
           {arr.map((groupDetails, index) => (
-            <div key={index}>
-            <img src={logo} alt="png  "/>
-            <Text 
-            onPress={()=>navigation.navigate('GroupDetail')} key={index}>{groupDetails.title }</Text>
-            </div>
+            <View style={styles.container1} key={index}>
+            <Image style={styles.imgee} source={require('./assets/favicon.png')} />
+            <Text style={styles.txt}
+            onPress={()=>navigation.navigate('GroupDetail',{title:groupDetails.title})} key={index}>{groupDetails.title }</Text>
+            </View>
           ))}
           
         </View>
@@ -91,7 +90,7 @@ export default Home;
 const styles = StyleSheet.create({
   container: {
     backgroundColor: '#fff',
-    margin: 15
+    
   },
   app:{
    backgroundColor: 'blue'
@@ -102,5 +101,13 @@ const styles = StyleSheet.create({
     padding: 10,
     margin: 10,
     borderRadius: 4
+  },
+  container1:{
+    flexDirection:'row',
+    margin:2,
+  },
+  txt:{
+    margin:4,
+    fontSize:20,
   }
 });
