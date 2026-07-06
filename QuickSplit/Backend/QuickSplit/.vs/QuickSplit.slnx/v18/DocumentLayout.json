@@ -1,0 +1,172 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\Lenovo\\Desktop\\Ani Job 2026\\projects\\QuickSplit\\Backend\\QuickSplit\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{6C86BD10-A781-C31C-EEC8-6B4D0EC85141}|QuickSplit\\QuickSplit.csproj|c:\\users\\lenovo\\desktop\\ani job 2026\\projects\\quicksplit\\backend\\quicksplit\\quicksplit\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6C86BD10-A781-C31C-EEC8-6B4D0EC85141}|QuickSplit\\QuickSplit.csproj|solutionrelative:quicksplit\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6C86BD10-A781-C31C-EEC8-6B4D0EC85141}|QuickSplit\\QuickSplit.csproj|c:\\users\\lenovo\\desktop\\ani job 2026\\projects\\quicksplit\\backend\\quicksplit\\quicksplit\\controllers\\splitcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6C86BD10-A781-C31C-EEC8-6B4D0EC85141}|QuickSplit\\QuickSplit.csproj|solutionrelative:quicksplit\\controllers\\splitcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6C86BD10-A781-C31C-EEC8-6B4D0EC85141}|QuickSplit\\QuickSplit.csproj|c:\\users\\lenovo\\desktop\\ani job 2026\\projects\\quicksplit\\backend\\quicksplit\\quicksplit\\models\\transaction.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6C86BD10-A781-C31C-EEC8-6B4D0EC85141}|QuickSplit\\QuickSplit.csproj|solutionrelative:quicksplit\\models\\transaction.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6C86BD10-A781-C31C-EEC8-6B4D0EC85141}|QuickSplit\\QuickSplit.csproj|c:\\users\\lenovo\\desktop\\ani job 2026\\projects\\quicksplit\\backend\\quicksplit\\quicksplit\\dbconnection\\mydbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6C86BD10-A781-C31C-EEC8-6B4D0EC85141}|QuickSplit\\QuickSplit.csproj|solutionrelative:quicksplit\\dbconnection\\mydbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6C86BD10-A781-C31C-EEC8-6B4D0EC85141}|QuickSplit\\QuickSplit.csproj|c:\\users\\lenovo\\desktop\\ani job 2026\\projects\\quicksplit\\backend\\quicksplit\\quicksplit\\models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6C86BD10-A781-C31C-EEC8-6B4D0EC85141}|QuickSplit\\QuickSplit.csproj|solutionrelative:quicksplit\\models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6C86BD10-A781-C31C-EEC8-6B4D0EC85141}|QuickSplit\\QuickSplit.csproj|c:\\users\\lenovo\\desktop\\ani job 2026\\projects\\quicksplit\\backend\\quicksplit\\quicksplit\\models\\group.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6C86BD10-A781-C31C-EEC8-6B4D0EC85141}|QuickSplit\\QuickSplit.csproj|solutionrelative:quicksplit\\models\\group.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6C86BD10-A781-C31C-EEC8-6B4D0EC85141}|QuickSplit\\QuickSplit.csproj|c:\\users\\lenovo\\desktop\\ani job 2026\\projects\\quicksplit\\backend\\quicksplit\\quicksplit\\models\\errorviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6C86BD10-A781-C31C-EEC8-6B4D0EC85141}|QuickSplit\\QuickSplit.csproj|solutionrelative:quicksplit\\models\\errorviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6C86BD10-A781-C31C-EEC8-6B4D0EC85141}|QuickSplit\\QuickSplit.csproj|c:\\users\\lenovo\\desktop\\ani job 2026\\projects\\quicksplit\\backend\\quicksplit\\quicksplit\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6C86BD10-A781-C31C-EEC8-6B4D0EC85141}|QuickSplit\\QuickSplit.csproj|solutionrelative:quicksplit\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6C86BD10-A781-C31C-EEC8-6B4D0EC85141}|QuickSplit\\QuickSplit.csproj|c:\\users\\lenovo\\desktop\\ani job 2026\\projects\\quicksplit\\backend\\quicksplit\\quicksplit\\migrations\\20260705055112_m3.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6C86BD10-A781-C31C-EEC8-6B4D0EC85141}|QuickSplit\\QuickSplit.csproj|solutionrelative:quicksplit\\migrations\\20260705055112_m3.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 726,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\Lenovo\\Desktop\\Ani Job 2026\\projects\\QuickSplit\\Backend\\QuickSplit\\QuickSplit\\Program.cs",
+              "RelativeDocumentMoniker": "QuickSplit\\Program.cs",
+              "ToolTip": "C:\\Users\\Lenovo\\Desktop\\Ani Job 2026\\projects\\QuickSplit\\Backend\\QuickSplit\\QuickSplit\\Program.cs",
+              "RelativeToolTip": "QuickSplit\\Program.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAAAoAAAArAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-04T13:52:49.385Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Transaction.cs",
+              "DocumentMoniker": "C:\\Users\\Lenovo\\Desktop\\Ani Job 2026\\projects\\QuickSplit\\Backend\\QuickSplit\\QuickSplit\\Models\\Transaction.cs",
+              "RelativeDocumentMoniker": "QuickSplit\\Models\\Transaction.cs",
+              "ToolTip": "C:\\Users\\Lenovo\\Desktop\\Ani Job 2026\\projects\\QuickSplit\\Backend\\QuickSplit\\QuickSplit\\Models\\Transaction.cs",
+              "RelativeToolTip": "QuickSplit\\Models\\Transaction.cs",
+              "ViewState": "AgIAAAUAAAAAAAAAAAAAwAoAAAAmAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-04T14:13:59.658Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "MyDBContext.cs",
+              "DocumentMoniker": "C:\\Users\\Lenovo\\Desktop\\Ani Job 2026\\projects\\QuickSplit\\Backend\\QuickSplit\\QuickSplit\\DBConnection\\MyDBContext.cs",
+              "RelativeDocumentMoniker": "QuickSplit\\DBConnection\\MyDBContext.cs",
+              "ToolTip": "C:\\Users\\Lenovo\\Desktop\\Ani Job 2026\\projects\\QuickSplit\\Backend\\QuickSplit\\QuickSplit\\DBConnection\\MyDBContext.cs",
+              "RelativeToolTip": "QuickSplit\\DBConnection\\MyDBContext.cs",
+              "ViewState": "AgIAAAUAAAAAAAAAAAAxwA4AAAAgAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-04T14:20:19.46Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "User.cs",
+              "DocumentMoniker": "C:\\Users\\Lenovo\\Desktop\\Ani Job 2026\\projects\\QuickSplit\\Backend\\QuickSplit\\QuickSplit\\Models\\User.cs",
+              "RelativeDocumentMoniker": "QuickSplit\\Models\\User.cs",
+              "ToolTip": "C:\\Users\\Lenovo\\Desktop\\Ani Job 2026\\projects\\QuickSplit\\Backend\\QuickSplit\\QuickSplit\\Models\\User.cs",
+              "RelativeToolTip": "QuickSplit\\Models\\User.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAwAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-04T18:42:56.152Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Group.cs",
+              "DocumentMoniker": "C:\\Users\\Lenovo\\Desktop\\Ani Job 2026\\projects\\QuickSplit\\Backend\\QuickSplit\\QuickSplit\\Models\\Group.cs",
+              "RelativeDocumentMoniker": "QuickSplit\\Models\\Group.cs",
+              "ToolTip": "C:\\Users\\Lenovo\\Desktop\\Ani Job 2026\\projects\\QuickSplit\\Backend\\QuickSplit\\QuickSplit\\Models\\Group.cs",
+              "RelativeToolTip": "QuickSplit\\Models\\Group.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAuwAYAAAAfAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-04T13:59:16.968Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "ErrorViewModel.cs",
+              "DocumentMoniker": "C:\\Users\\Lenovo\\Desktop\\Ani Job 2026\\projects\\QuickSplit\\Backend\\QuickSplit\\QuickSplit\\Models\\ErrorViewModel.cs",
+              "RelativeDocumentMoniker": "QuickSplit\\Models\\ErrorViewModel.cs",
+              "ToolTip": "C:\\Users\\Lenovo\\Desktop\\Ani Job 2026\\projects\\QuickSplit\\Backend\\QuickSplit\\QuickSplit\\Models\\ErrorViewModel.cs",
+              "RelativeToolTip": "QuickSplit\\Models\\ErrorViewModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-04T14:13:18.698Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "HomeController.cs",
+              "DocumentMoniker": "C:\\Users\\Lenovo\\Desktop\\Ani Job 2026\\projects\\QuickSplit\\Backend\\QuickSplit\\QuickSplit\\Controllers\\HomeController.cs",
+              "RelativeDocumentMoniker": "QuickSplit\\Controllers\\HomeController.cs",
+              "ToolTip": "C:\\Users\\Lenovo\\Desktop\\Ani Job 2026\\projects\\QuickSplit\\Backend\\QuickSplit\\QuickSplit\\Controllers\\HomeController.cs",
+              "RelativeToolTip": "QuickSplit\\Controllers\\HomeController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-04T13:54:57.271Z"
+            }
+          ]
+        },
+        {
+          "DockedWidth": 22,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "SplitController.cs",
+              "DocumentMoniker": "C:\\Users\\Lenovo\\Desktop\\Ani Job 2026\\projects\\QuickSplit\\Backend\\QuickSplit\\QuickSplit\\Controllers\\SplitController.cs",
+              "RelativeDocumentMoniker": "QuickSplit\\Controllers\\SplitController.cs",
+              "ToolTip": "C:\\Users\\Lenovo\\Desktop\\Ani Job 2026\\projects\\QuickSplit\\Backend\\QuickSplit\\QuickSplit\\Controllers\\SplitController.cs",
+              "RelativeToolTip": "QuickSplit\\Controllers\\SplitController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAxwBkAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-04T18:08:13.09Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "20260705055112_m3.cs",
+              "DocumentMoniker": "C:\\Users\\Lenovo\\Desktop\\Ani Job 2026\\projects\\QuickSplit\\Backend\\QuickSplit\\QuickSplit\\Migrations\\20260705055112_m3.cs",
+              "RelativeDocumentMoniker": "QuickSplit\\Migrations\\20260705055112_m3.cs",
+              "ToolTip": "C:\\Users\\Lenovo\\Desktop\\Ani Job 2026\\projects\\QuickSplit\\Backend\\QuickSplit\\QuickSplit\\Migrations\\20260705055112_m3.cs",
+              "RelativeToolTip": "QuickSplit\\Migrations\\20260705055112_m3.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-05T05:51:13.014Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+.card {
+  border: 2px solid #4cd109;
+  font-size: 16px;
+  color: blueviolet;
+  padding: 40px;
+  margin-top: 20px;
+}
+
+body{
+    background-color: black;
+}
