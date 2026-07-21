@@ -11,6 +11,8 @@ namespace QuickSplit.Models
         public int Total { get; set; }
         public string SharesAsJson{ get; set; }
 
+        public ICollection<User> User { get; set; }
+
         public bool Validate()
         {
             return true;
