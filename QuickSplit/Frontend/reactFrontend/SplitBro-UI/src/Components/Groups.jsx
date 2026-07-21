@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import Group from './Group';
+import { Link } from 'react-router';
 
 const Groups = ({userId}) => {
 
@@ -41,7 +42,9 @@ const Groups = ({userId}) => {
     return (
         <div>
         <div> Group List</div> 
-        {groups?.map(grp=> ( <Group key={grp.id} name={grp.name} /> ))}
+        {groups?.map(grp=> (<>
+        <Group key={grp.id} name={grp.name} /> <Link to={"/group/"+grp.id}>grp</Link>
+        </> ))}
         </div>
     )
 }
