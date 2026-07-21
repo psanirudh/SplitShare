@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("QuickSplit")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+5f346a254c3d7d0286dbda902c4f7400185137c6")]
 [assembly: System.Reflection.AssemblyProductAttribute("QuickSplit")]
 [assembly: System.Reflection.AssemblyTitleAttribute("QuickSplit")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

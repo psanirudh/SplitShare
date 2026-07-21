@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "oO2ZY35FAwU=",
+  "dgSpecHash": "xMxkv7GAmN8=",
   "success": true,
-  "projectFilePath": "C:\\Users\\Lenovo\\Desktop\\Ani Job 2026\\projects\\QuickSplit\\Backend\\QuickSplit\\QuickSplit\\QuickSplit.csproj",
+  "projectFilePath": "C:\\Users\\Lenovo\\Desktop\\Ani Job 2026\\projects\\QuickSplitProject\\SplitShare\\QuickSplit\\Backend\\QuickSplit\\QuickSplit\\QuickSplit.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Lenovo\\.nuget\\packages\\azure.core\\1.47.1\\azure.core.1.47.1.nupkg.sha512",
     "C:\\Users\\Lenovo\\.nuget\\packages\\azure.identity\\1.14.2\\azure.identity.1.14.2.nupkg.sha512",
