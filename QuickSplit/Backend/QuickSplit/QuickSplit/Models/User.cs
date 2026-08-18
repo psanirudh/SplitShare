@@ -5,7 +5,6 @@
         public int id { get; set; }
         public string name { get; set; }
         public ICollection<Group> Groups { get; set; }
-        public ICollection<Transaction> Transactions { get; set; }
 
 
     }

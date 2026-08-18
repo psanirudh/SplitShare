@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using QuickSplit.DBConnection;
 
@@ -10,9 +11,11 @@ using QuickSplit.DBConnection;
 namespace QuickSplit.Migrations
 {
     [DbContext(typeof(MyDBContext))]
-    partial class MyDBContextModelSnapshot : ModelSnapshot
+    [Migration("20260809180724_august")]
+    partial class august
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -92,10 +95,15 @@ namespace QuickSplit.Migrations
                     b.Property<int>("Total")
                         .HasColumnType("int");
 
+                    b.Property<int?>("Userid")
+                        .HasColumnType("int");
+
                     b.Property<int>("groupId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("Userid");
 
                     b.HasIndex("groupId");
 
@@ -145,6 +153,10 @@ namespace QuickSplit.Migrations
 
             modelBuilder.Entity("QuickSplit.Models.Transaction", b =>
                 {
+                    b.HasOne("QuickSplit.Models.User", null)
+                        .WithMany("Transactions")
+                        .HasForeignKey("Userid");
+
                     b.HasOne("QuickSplit.Models.Group", null)
                         .WithMany("transactions")
                         .HasForeignKey("groupId")
@@ -160,6 +172,11 @@ namespace QuickSplit.Migrations
             modelBuilder.Entity("QuickSplit.Models.Transaction", b =>
                 {
                     b.Navigation("Shares");
+                });
+
+            modelBuilder.Entity("QuickSplit.Models.User", b =>
+                {
+                    b.Navigation("Transactions");
                 });
 #pragma warning restore 612, 618
         }

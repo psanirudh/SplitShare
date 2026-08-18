@@ -9,20 +9,18 @@ namespace QuickSplit.Models
 
         public string Descrption { get; set; }
         public int Total { get; set; }
-        public string SharesAsJson{ get; set; }
 
-        public ICollection<User> User { get; set; }
+        public ICollection<Share> Shares { get; set; }
 
         public bool Validate()
         {
-            return true;
+            int Totall = 0;
+            foreach(var share in Shares)
+            {
+                Totall += share.Amount;
+            }
+            return Totall ==0;
         }
 
-        [NotMapped]
-        public Dictionary<int,int> Shares{ 
-         get {
-             return  System.Text.Json.JsonSerializer.Deserialize<Dictionary<int, int>>(SharesAsJson);
-         } 
-        }
     }
 }

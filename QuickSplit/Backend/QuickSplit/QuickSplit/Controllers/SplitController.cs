@@ -4,26 +4,38 @@ using Microsoft.EntityFrameworkCore;
 using QuickSplit.DBConnection;
 using QuickSplit.Models;
 using System.Diagnostics;
+using System.Text.Json;
 using Group = QuickSplit.Models.Group;
 
 namespace QuickSplit.Controllers
 {
+
+    public class test
+    {
+        public string add(int a,int b) {
+            return (a + ":" + b);
+        }
+
+        public string  add(int a, int b,int c=34)
+        {
+            return (a + ":" + b+":"+c);
+        }
+    }
+
     [ApiController]
     [Route("split")]
     public class SplitController : ControllerBase
     {
+        public static int currentUserId=7;
+
         [HttpGet]
         [Route("ping")]
         public string ping()
         {
+            return new test().add(2, 3);
             return "hi";
         }
-        [HttpGet]
-        [Route("ping")]
-        public string ping2()
-        {
-            return "hello";
-        }
+       
 
         [HttpGet]
         [Route("Group/Add")]
@@ -33,6 +45,9 @@ namespace QuickSplit.Controllers
             Models.Group group = new Models.Group() { Name = groupName };
             using (var dbcon = new MyDBContext())
             {
+                var groupAdmin = dbcon.User.Where(x => x.id == SplitController.currentUserId).First();
+                group.members = new List<User>();
+                group.members.Add(groupAdmin);
                 dbcon.groups.Add(group);
                 dbcon.SaveChanges();
             }
@@ -79,15 +94,40 @@ namespace QuickSplit.Controllers
         }
 
 
+
+        [HttpGet]
+        [Route("Group/Get")]
+        public object GroupGet(int groupId)
+        {
+            object groupWithDetails =null;
+            using (var dbcon = new MyDBContext())
+            {
+                groupWithDetails = dbcon.groups.Where(z => z.Id == groupId).Include(x => x.members).Include(x => x.transactions).Select(g => new
+                {
+                    g.Id,
+                    g.Name,
+
+                    Members = g.members.Select(m => new
+                    {
+                        m.id,
+                        m.name
+                    }
+                    ).ToList()
+                }).First();
+
+            }
+            return groupWithDetails;
+        }
+
         [HttpGet]
         [Route("AddMember")]
-        public void AddMembers(int groupId,int MemberId){
+        public void AddMembers(int groupId,int memberId){
 
             using (var dbcon = new MyDBContext())
             {
                 var grp = dbcon.groups.Where(x => x.Id == groupId).First();
-                var memberObjs = dbcon.User.Where(x => x.id == MemberId).ToList();
-                Debug.WriteLine("ani querying " + dbcon.User.Where(x => x.id == MemberId).ToQueryString());
+                var memberObjs = dbcon.User.Where(x => x.id == memberId).ToList();
+                Debug.WriteLine("ani querying " + dbcon.User.Where(x => x.id == memberId).ToQueryString());
                 if (grp.members is null)
                 {
                     grp.members = new List<User>();
@@ -128,7 +168,6 @@ namespace QuickSplit.Controllers
                     Descrption = descrpion,
                     groupId = groupId,
                     Total = total,
-                    SharesAsJson = SharesAsJson
                 };
                 transaction.Validate();
                 dbcon.Transaction.Add(transaction);

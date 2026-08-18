@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
-import Group from './Group';
+import thumbNail from './../assets/thumbnail.png';
+
 import { Link } from 'react-router';
 
 const Groups = ({userId}) => {
@@ -39,15 +40,21 @@ const Groups = ({userId}) => {
      fetchGroups();  
      },[]);
 
-    return (
-        <div>
+    return ( 
+        <>
         <div> Group List</div> 
-        {groups?.map(grp=> (<>
-        <Group key={grp.id} name={grp.name} /> <Link to={"/group/"+grp.id}>grp</Link>
-        </> ))}
-        </div>
-    )
-}
+        {groups?.map(grp=> (
+          <div key={grp.id} className='card'>
+            <img src={thumbNail}/>
+            <b>GroupName: {grp.name} </b>
+            <br/>
+            <Link to={"/group/"+grp.id}>grp</Link> 
+          </div>
+        ))}
+        </>
+        )
+
+       }
 
 export default Groups;
 
