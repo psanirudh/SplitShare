@@ -23,7 +23,7 @@ const Group = () => {
             <div> {user.name}</div> 
             {(!group.members.some(member => member.id === user.id )) 
             ? <button onClick={()=>{
-              fetch("https://localhost:7166/split/AddMember?groupId="+group.id+"&memberId="+user.id)
+              fetch("http://localhost:5100/split/AddMember?groupId="+group.id+"&memberId="+user.id)
 
             }}>Add</button>
             : <p>member</p>
@@ -34,14 +34,14 @@ const Group = () => {
 }
 
     useEffect(()=>{
-      fetch("https://localhost:7166/split/group/get?groupId="+groupId)
+      fetch("http://localhost:5100/split/group/get?groupId="+groupId)
       .then((resp)=> resp.json())
       .then((result)=>{
         console.log(result);
         setGroup(result);
       });
 
-      fetch("https://localhost:7166/split/Users/Get")
+      fetch("http://localhost:5100/split/Users/Get")
       .then((resp) => resp.json())
       .then((resultJson)=>{
           setUsers(resultJson);
@@ -64,7 +64,7 @@ const Group = () => {
         showMembers()
        } 
        <h1>You totally owe 0</h1>
-       <Transactions/>
+       <Transactions transcs={group.transactions}/>
         <p>Add Tranasction</p>
           <AddTransaction groupId={group.id} members={group.members}/>
     </div>

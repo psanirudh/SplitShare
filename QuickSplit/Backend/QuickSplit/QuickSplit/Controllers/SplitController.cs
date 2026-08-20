@@ -6,6 +6,7 @@ using QuickSplit.Models;
 using System.Diagnostics;
 using System.Text.Json;
 using Group = QuickSplit.Models.Group;
+using QuickSplit.Models;
 
 namespace QuickSplit.Controllers
 {
@@ -32,7 +33,7 @@ namespace QuickSplit.Controllers
         [Route("ping")]
         public string ping()
         {
-            return new test().add(2, 3);
+            //return new test().add(2, 3);
             return "hi";
         }
        
@@ -106,7 +107,13 @@ namespace QuickSplit.Controllers
                 {
                     g.Id,
                     g.Name,
-
+                    Transactions = g.transactions.Select(t => new
+                    {
+                        t.Id,
+                        t.paidBy,
+                        t.Total,
+                        t.Descrption
+                    }).ToList(),
                     Members = g.members.Select(m => new
                     {
                         m.id,
@@ -156,22 +163,33 @@ namespace QuickSplit.Controllers
 
         }
 
-        [HttpGet]
+        [HttpPost]
         [Route("AddTransaction")]
-        public void AddTransaction(int groupId,string descrpion,int total,string SharesAsJson)
+        public void AddTransaction( [FromBody]TransactionDTO dto)
         {
-
+            Debug.WriteLine("hi"+dto.amount);
             using (var dbcon = new MyDBContext())
             {
                 var transaction = new Transaction()
                 {
-                    Descrption = descrpion,
-                    groupId = groupId,
-                    Total = total,
+                    Descrption = dto.description,
+                    groupId = dto.groupId,
+                    Total = dto.amount,
+                    paidBy = dto.paidBy,
+                    Shares = new List<Share>()
                 };
-                transaction.Validate();
-                dbcon.Transaction.Add(transaction);
-                dbcon.SaveChanges();
+
+                foreach(var shareJson in dto.shares){
+                    Share share = new Share();
+                    share.UserID = shareJson.Key;
+                    share.Amount = shareJson.Value;
+                    transaction.Shares.Add(share);
+                }
+                if(transaction.Validate()){
+                    dbcon.Transaction.Add(transaction);
+                    dbcon.SaveChanges();
+                }
+               
             }
 
         }
@@ -183,3 +201,8 @@ namespace QuickSplit.Controllers
  https://localhost:7166/split/User/add?username=ani
 https://localhost:7166/split/User/add?username=asker
 https://localhost:7166/split/User/add?username=dsp */
+/*
+
+cd C:\Users\bhava\OneDrive\Desktop\splitwise\SplitShare\QuickSplit\Backend\QuickSplit\QuickSplit
+cd C:\Users\bhava\OneDrive\Desktop\splitwise\SplitShare\QuickSplit\Frontend\reactFrontend\SplitBro-UI
+*/

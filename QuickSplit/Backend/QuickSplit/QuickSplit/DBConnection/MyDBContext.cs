@@ -8,7 +8,7 @@ namespace QuickSplit.DBConnection
         public MyDBContext():base() { }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(@"Server=DESKTOP-738PR10\SQLEXPRESS;Database=LeaveDB;Trusted_connection=true;TrustServerCertificate=True;");
+            optionsBuilder.UseSqlServer(@"Server=localhost;Database=master;Trusted_connection=true;TrustServerCertificate=True;");
         }
         public DbSet<Group> groups { get; set; }
         public DbSet<User> User { get; set; }

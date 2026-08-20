@@ -6,7 +6,7 @@ namespace QuickSplit.Models
     {
         public int Id { get; set; }
         public int groupId { get; set; }
-
+        public int paidBy {get;set;}
         public string Descrption { get; set; }
         public int Total { get; set; }
 
@@ -19,8 +19,17 @@ namespace QuickSplit.Models
             {
                 Totall += share.Amount;
             }
-            return Totall ==0;
+            return Totall ==Total;
         }
+
+    }
+
+    public class TransactionDTO{
+        public string description {get; set;}
+        public int paidBy  {get; set;}
+        public int groupId {get; set;}
+        public int amount {get; set;}
+        public Dictionary<int,int> shares {get; set;}
 
     }
 }

@@ -4,6 +4,8 @@
 
 namespace QuickSplit.Migrations
 {
+    //dotnet ef migrations add choosenName
+    //dotnet ef database update
     /// <inheritdoc />
     public partial class m3 : Migration
     {

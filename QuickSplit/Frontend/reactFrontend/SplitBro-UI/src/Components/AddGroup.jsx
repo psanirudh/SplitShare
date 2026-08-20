@@ -9,7 +9,7 @@ const AddGroup = () => {
     <div>
        <input placeholder='Enter a group Name' value={groupName} onChange={e =>setGroupName(e.target.value)} />
        <button onClick={()=>{ 
-        fetch("https://localhost:7166/split/Group/Add?groupName="+groupName)
+        fetch("http://localhost:5100/split/Group/Add?groupName="+groupName)
         .then((res)=> res.json())
         .then((result) => {console.log(result); navigate('/group/'+result) }); 
         }}>Add</button>

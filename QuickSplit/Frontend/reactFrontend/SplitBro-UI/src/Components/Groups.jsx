@@ -26,7 +26,7 @@ const Groups = ({userId}) => {
        async function fetchGroups() {
       try {
         const response = await fetch(
-          "https://localhost:7166/split/groups/get"
+          "http://localhost:5100/split/groups/get"
         ,API_OPTIONS).then();
         const data = await response.json();
         
